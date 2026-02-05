@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learning Path Recommender</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin: 30px 0 15px;
+            font-size: 1.8rem;
+        }
+        
+        .upload-section, .manual-section {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid #3498db;
+        }
+        
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .file-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px dashed #3498db;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .file-input:hover {
+            background-color: #e8f4fc;
+            border-color: #2980b9;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .manual-link {
+            display: inline-block;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .manual-link:hover {
+            background-color: #3498db;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 15px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Learning Path Recommender</h1>
+        <p style="color: #7f8c8d; margin-bottom: 30px; font-size: 1.1rem;">
+            Upload student data or enter marks manually to generate personalized learning paths
+        </p>
+        
+        <div class="upload-section">
+            <h2>📁 Upload Students File</h2>
+            <p style="margin-bottom: 20px; color: #666;">
+                Upload a CSV or Excel file containing student marks data
+            </p>
+            <form method="POST" action="/upload" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="file" class="file-input" accept=".csv,.xlsx,.xls">
+                <input type="submit" value="Upload & Compute" class="submit-btn">
+            </form>
+        </div>
+        
+        <div class="manual-section">
+            <h2>✏️ Enter Marks Manually</h2>
+            <p style="margin-bottom: 15px; color: #666;">
+                Prefer to enter marks one by one? Use our manual entry form
+            </p>
+            <a href="/manual" class="manual-link">Go to Manual Entry Form</a>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Processing</h3>
+                <p>Quick analysis and results</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Personalized</h3>
+                <p>Tailored learning paths</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Detailed Reports</h3>
+                <p>Comprehensive analytics</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manual Entry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background-color: white;
+            color: #3498db;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-link:hover {
+            background-color: #3498db;
+            color: white;
+            transform: translateX(-5px);
+        }
+        
+        .form-container {
+            padding: 40px;
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .subject-card {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-top: 4px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .subject-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 600;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .submit-section {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .back-link {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">
+        <span>←</span> Back to Home
+    </a>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Enter Student Marks Manually</h1>
+            <p class="subtitle">Fill in the marks for each subject below</p>
+        </div>
+        
+        <form method="POST" class="form-container">
+            <div class="subjects-grid">
+                {% for subject, cols in subjects.items() %}
+                <div class="subject-card">
+                    <h3 class="subject-title">{{ subject }}</h3>
+                    {% for col in cols %}
+                    <div class="input-group">
+                        <label class="input-label">{{ col }}</label>
+                        <input type="number" name="{{ col }}" class="input-field" 
+                               required min="0" max="100" 
+                               placeholder="Enter marks (0-100)" step="0.1">
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="submit-section">
+                <button type="submit" class="submit-btn">
+                    <span>📊</span> Compute Learning Path
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
